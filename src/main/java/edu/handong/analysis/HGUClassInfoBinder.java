@@ -1,6 +1,7 @@
 package edu.handong.analysis;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.commons.cli.CommandLine;
@@ -10,6 +11,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
+import edu.handong.analysis.datamodel.ExcelType1;
+import edu.handong.analysis.utils.ExcelWriter;
 import edu.handong.analysis.utils.ZipReader;
 
 public class HGUClassInfoBinder {
@@ -32,13 +35,17 @@ public class HGUClassInfoBinder {
 				System.exit(0);
 			}
 			
+			ArrayList<ExcelType1> values = new ArrayList<ExcelType1>();
+			
 			File[] fileList = dataDir.listFiles();
 			Arrays.sort(fileList);
-			for(File f : fileList) {
-				System.out.println(f.getName());
-				ZipReader.readFileInZip(f);
+			int i=0;
+			for(File file : fileList) {
+				i++;
+				System.out.println(i + " Times : " + file.getName());
+				ZipReader.readFileInZip(file, values);
 			}
-			
+			ExcelWriter.WriteAFile(values, output);
 		}
 	}
 	
