@@ -24,6 +24,7 @@ public class ExcelReader {
 			Workbook wb = WorkbookFactory.create(inp);
 		    Sheet sheet = wb.getSheetAt(0);
 		    int rowNum = sheet.getPhysicalNumberOfRows();
+		    System.out.println("File Name : " + fileName + ", NumOfRows : " + rowNum);
 		    int rowIndex;
 		    for(rowIndex = 1; rowIndex<rowNum; rowIndex++) {
 		    	Row row = sheet.getRow(rowIndex);
