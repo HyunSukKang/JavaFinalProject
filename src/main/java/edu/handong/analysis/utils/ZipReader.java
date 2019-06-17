@@ -13,10 +13,11 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
 import edu.handong.analysis.datamodel.ExcelType1;
+import edu.handong.analysis.datamodel.ExcelType2;
 
 public class ZipReader {
 
-	public static void readFileInZip(File file, ArrayList<ExcelType1> values) {
+	public static void readFileInZip(File file, ArrayList<ExcelType1> values1, ArrayList<ExcelType2> values2) {
 		try {
 			ZipFile zipFile = new ZipFile(file);
 
@@ -24,23 +25,22 @@ public class ZipReader {
 		    int i=0;
 		    while(entries.hasMoreElements()){
 		    	i++;
-		    	System.out.println(i + "Times!!");
 		        ZipArchiveEntry entry = entries.nextElement();
 		        InputStream stream = zipFile.getInputStream(entry);
 		        System.out.println(entry);
 		        
 		        ExcelReader myReader = new ExcelReader();
 		        
-		        myReader.getDataOfFile1(stream, values, file.getName());
-		        
-//		        for(String value:myReader.getDataOfFile1(stream)) {
-//		        	System.out.println(value);
-//		        }   
+		        if(i==1) {
+		        	myReader.getDataOfFile1(stream, values1, file.getName());
+		        }
+		        else if(i==2) {
+		        	myReader.getDataOfFile2(stream, values2, file.getName());
+		        }
 		    }
 		    zipFile.close();
 		} catch (IOException e) {
 			e.getMessage();
 		}
-//		return values;
 	}
 }

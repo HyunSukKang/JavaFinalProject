@@ -1,7 +1,7 @@
 package edu.handong.analysis.datamodel;
 
 public class ListNode {
-	private String data;
+	private ExcelType2 data;
     private ListNode link;
 
     public ListNode() {
@@ -9,16 +9,16 @@ public class ListNode {
         link = null;     
     }
 
-    public ListNode(String newData, ListNode linkNode) {
+    public ListNode(ExcelType2 newData, ListNode linkNode) {
         data = newData;
         link = linkNode;
     }
     
-    public void setData(String newData) {
+    public void setData(ExcelType2 newData) {
         data = newData;
     }
 
-    public String getData() {
+    public ExcelType2 getData() {
         return data;
     }
 

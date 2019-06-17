@@ -25,8 +25,8 @@ private ListNode head;
 		return count;
 	}
 	
-	public void addANodeToStart(String addData) {
-		head = new ListNode(addData,head);
+	public void addANodeToStart(ExcelType2 addData) {
+		head = new ListNode(addData, head);
 	}
 	
 	public void deleteHeadNode() {
@@ -38,15 +38,15 @@ private ListNode head;
 		}
 	}
 	
-	public boolean onList(String target) {
+	public boolean onList(ExcelType2 target) {
 		return find(target) != null;
 	}
 	
-	private ListNode find(String target) {
+	private ListNode find(ExcelType2 target) {
 		boolean found = false;
 		ListNode position = head;
 		while((position != null) && !found) {
-			String dataAtPosition = position.getData();
+			ExcelType2 dataAtPosition = position.getData();
 			if(dataAtPosition.equals(target))
 				found = true;
 			else
