@@ -3,6 +3,7 @@ package edu.handong.analysis.utils;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -17,7 +18,7 @@ import edu.handong.analysis.datamodel.LinkedList;
 
 public class ExcelReader {
 	
-	public void getDataOfFile1(InputStream is, LinkedList<ExcelType1> values, String fileName) {
+	public void getDataOfFile1(InputStream is, LinkedList<ExcelType1> values, String fileName, ArrayList<String> errorFileName) {
 		ExcelType1 excel1 = null;
 		String[] cellInfo = new String[7];
 		try (InputStream inp = is) {
@@ -32,6 +33,7 @@ public class ExcelReader {
 			    	if (cell == null) {
 			    		cellInfo[i] = "";
 			    		continue;
+//			    		cell = row.createCell(i);
 			    	}
 			    	CellType type = cell.getCellType();
 				    if(type.toString().contentEquals("STRING")) {
@@ -46,13 +48,15 @@ public class ExcelReader {
 			    values.addANodeToTail(excel1);
 		    }
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			errorFileName.add(fileName);
+			e.getMessage();
 		} catch (IOException e) {
+			errorFileName.add(fileName);
 			e.getMessage();
 		}
 	}
 	
-	public void getDataOfFile2(InputStream is, LinkedList<ExcelType2> values, String fileName) {
+	public void getDataOfFile2(InputStream is, LinkedList<ExcelType2> values, String fileName, ArrayList<String> errorFileName) {
 		ExcelType2 excel2 = null;
 		String[] cellInfo = new String[5];
 		try (InputStream inp = is) {
@@ -67,6 +71,7 @@ public class ExcelReader {
 			    	if (cell == null) {
 			    		cellInfo[i] = "";
 			    		continue;
+//			    		cell = row.createCell(i);
 			    	}
 			    	CellType type = cell.getCellType();
 				    if(type.toString().contentEquals("STRING")) {
@@ -81,8 +86,10 @@ public class ExcelReader {
 			    values.addANodeToTail(excel2);
 		    }
 		} catch (FileNotFoundException e) {
+			errorFileName.add(fileName);
 			e.printStackTrace();
 		} catch (IOException e) {
+			errorFileName.add(fileName);
 			e.getMessage();
 		}
 	}

@@ -1,6 +1,7 @@
 package edu.handong.analysis;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.commons.cli.CommandLine;
@@ -13,7 +14,9 @@ import org.apache.commons.cli.Options;
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
 import edu.handong.analysis.datamodel.LinkedList;
+import edu.handong.analysis.utils.ErrorFileWriter;
 import edu.handong.analysis.utils.ExcelWriter;
+import edu.handong.analysis.utils.NotADirectoryException;
 
 public class HGUClassInfoBinder {
 	
@@ -30,19 +33,24 @@ public class HGUClassInfoBinder {
 			}
 			
 			File dataDir = new File(input);
-			if(!dataDir.exists()) {
-				System.out.println("Wrong Input Path");
+			
+			try {
+				if(!dataDir.exists())
+					throw new NotADirectoryException();
+			} catch (NotADirectoryException e) {
+				System.out.println(e.getMessage());
 				System.exit(0);
 			}
 			
 			LinkedList<ExcelType1> value1 = new LinkedList<ExcelType1>();
 			LinkedList<ExcelType2> value2 = new LinkedList<ExcelType2>();
+			ArrayList<String> errorFileName = new ArrayList<String>();
 			
 			File[] fileList = dataDir.listFiles();
 			Arrays.sort(fileList);
 			Thread thread = null;
 			for(File file : fileList) {
-				thread = new Thread(new MultiThread(file, value1, value2));
+				thread = new Thread(new MultiThread(file, value1, value2, errorFileName));
 				thread.start();
 			}
 			try {
@@ -52,6 +60,7 @@ public class HGUClassInfoBinder {
 			}
 			ExcelWriter.WriteAFile1(value1, output);
 			ExcelWriter.WriteAFile2(value2, output);
+			if(errorFileName.size() > 0) ErrorFileWriter.writeAFile(errorFileName, output);
 		}
 	}
 	

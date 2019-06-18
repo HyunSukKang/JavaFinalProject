@@ -3,6 +3,7 @@ package edu.handong.analysis.utils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
@@ -14,7 +15,7 @@ import edu.handong.analysis.datamodel.LinkedList;
 
 public class ZipReader {
 	
-	public static void readFileInZip(File file, LinkedList<ExcelType1> values1, LinkedList<ExcelType2> values2) {
+	public static void readFileInZip(File file, LinkedList<ExcelType1> values1, LinkedList<ExcelType2> values2, ArrayList<String> errorFileName) {
 		try {
 			ZipFile zipFile = new ZipFile(file);
 
@@ -29,10 +30,10 @@ public class ZipReader {
 		        ExcelReader myReader = new ExcelReader();
 		        
 		        if(i==1) {
-		        	myReader.getDataOfFile1(stream, values1, file.getName());
+		        	myReader.getDataOfFile1(stream, values1, file.getName(), errorFileName);
 		        }
 		        else if(i==2) {
-		        	myReader.getDataOfFile2(stream, values2, file.getName());
+		        	myReader.getDataOfFile2(stream, values2, file.getName(), errorFileName);
 		        }
 		    }
 		    zipFile.close();
