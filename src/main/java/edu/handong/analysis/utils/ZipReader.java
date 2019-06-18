@@ -1,23 +1,20 @@
 package edu.handong.analysis.utils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
+import edu.handong.analysis.datamodel.LinkedList;
 
 public class ZipReader {
-
-	public static void readFileInZip(File file, ArrayList<ExcelType1> values1, ArrayList<ExcelType2> values2) {
+	
+	public static void readFileInZip(File file, LinkedList<ExcelType1> values1, LinkedList<ExcelType2> values2) {
 		try {
 			ZipFile zipFile = new ZipFile(file);
 

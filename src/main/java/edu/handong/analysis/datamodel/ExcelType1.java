@@ -11,7 +11,7 @@ public class ExcelType1 {
 	private String row7;
 	
 	public ExcelType1(String fileName, String[] line) {
-		this.fileName = fileName;
+		this.fileName = fileName.split(".zip")[0];
 		row1 = line[0];
 		row2 = line[1];
 		row3 = line[2];
@@ -22,6 +22,9 @@ public class ExcelType1 {
 	}
 	public String getFileName() {
 		return fileName;
+	}
+	public Integer getIntegerFileName() {
+		return Integer.parseInt(fileName);
 	}
 	public String getRow1() {
 		return row1;
