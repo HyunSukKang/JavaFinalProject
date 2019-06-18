@@ -13,7 +13,7 @@ import org.apache.commons.cli.Options;
 
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
-import edu.handong.analysis.datamodel.LinkedList;
+import edu.handong.analysis.datamodel.HSLinkedList;
 import edu.handong.analysis.utils.ErrorFileWriter;
 import edu.handong.analysis.utils.ExcelWriter;
 import edu.handong.analysis.utils.NotADirectoryException;
@@ -42,8 +42,8 @@ public class HGUClassInfoBinder {
 				System.exit(0);
 			}
 			
-			LinkedList<ExcelType1> value1 = new LinkedList<ExcelType1>();
-			LinkedList<ExcelType2> value2 = new LinkedList<ExcelType2>();
+			HSLinkedList<ExcelType1> value1 = new HSLinkedList<ExcelType1>();
+			HSLinkedList<ExcelType2> value2 = new HSLinkedList<ExcelType2>();
 			ArrayList<String> errorFileName = new ArrayList<String>();
 			
 			File[] fileList = dataDir.listFiles();

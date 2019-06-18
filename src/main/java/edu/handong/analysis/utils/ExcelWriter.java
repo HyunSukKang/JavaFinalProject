@@ -17,10 +17,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
-import edu.handong.analysis.datamodel.LinkedList;
+import edu.handong.analysis.datamodel.HSLinkedList;
 
 public class ExcelWriter {
-	public static void WriteAFile1(LinkedList<ExcelType1> lines, String path) {
+	public static void WriteAFile1(HSLinkedList<ExcelType1> lines, String path) {
 		String fileNameToSave = path.split(".xlsx")[0] + "1.xlsx";
 		String[] columns = {"Zip 파일 이름", "제목", "요약문 (300자 내외)", "\"핵심어\n" + 
 				"(keyword,쉽표로 구분)\"", "조회날짜", "\"실제자료조회\n" + 
@@ -87,7 +87,7 @@ public class ExcelWriter {
 	}
 	
 	
-	public static void WriteAFile2(LinkedList<ExcelType2> lines, String path) {
+	public static void WriteAFile2(HSLinkedList<ExcelType2> lines, String path) {
 		String fileNameToSave = path.split(".xlsx")[0] + "2.xlsx";
 		String[] columns = {"Zip 파일 이름", "제목(반드시 요약문 양식에 입력한 제목과 같아야 함.)", "표/그림 일련번호", "자료유형(표,그림,…)", "자료에 나온 표나 그림 설명(캡션)", "자료가 나온 쪽번호"};
 		Workbook wb = new XSSFWorkbook();

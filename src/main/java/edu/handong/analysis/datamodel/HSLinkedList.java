@@ -2,11 +2,11 @@ package edu.handong.analysis.datamodel;
 
 import java.util.ArrayList;
 
-public class LinkedList<D> {
+public class HSLinkedList<D> {
 	private ListNode head;
 	private ListNode tail;
 	
-	public LinkedList() {
+	public HSLinkedList() {
 		head = null;
 	}
 	
@@ -20,25 +20,7 @@ public class LinkedList<D> {
 		return count;
 	}
 	
-	public void addANodeToStart(D addData) {
-		if(length()<2)
-			tail = head;
-		head = new ListNode(addData,head);
-	}
-	
-	public void deleteHeadNode() {
-		if(head != null) {
-			head = head.link;
-			if(head==null)
-				tail=null;
-		}	
-		else {
-			System.out.println("Deleting from an empty list.");
-			System.exit(0);
-		}
-	}
-	
-	public void addANodeToTail(D addData) {
+	public void insertNode(D addData) {
 		if(length()==0) {
 			tail=new ListNode(addData,null);
 			head=tail;
@@ -48,7 +30,7 @@ public class LinkedList<D> {
 		}
 	}
 	
-	public void deleteTailNode() {
+	public void deleteNode() {
 		ListNode previous = getPreviousNode();
 		
 		tail = previous;

@@ -14,11 +14,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
-import edu.handong.analysis.datamodel.LinkedList;
+import edu.handong.analysis.datamodel.HSLinkedList;
 
 public class ExcelReader {
 	
-	public void getDataOfFile1(InputStream is, LinkedList<ExcelType1> values, String fileName, ArrayList<String> errorFileName) {
+	public void getDataOfFile1(InputStream is, HSLinkedList<ExcelType1> values, String fileName, ArrayList<String> errorFileName) {
 		ExcelType1 excel1 = null;
 		String[] cellInfo = new String[7];
 		try (InputStream inp = is) {
@@ -45,7 +45,7 @@ public class ExcelReader {
 				    }
 			    }
 			    excel1 = new ExcelType1(fileName, cellInfo);
-			    values.addANodeToTail(excel1);
+			    values.insertNode(excel1);
 		    }
 		} catch (FileNotFoundException e) {
 			errorFileName.add(fileName);
@@ -56,7 +56,7 @@ public class ExcelReader {
 		}
 	}
 	
-	public void getDataOfFile2(InputStream is, LinkedList<ExcelType2> values, String fileName, ArrayList<String> errorFileName) {
+	public void getDataOfFile2(InputStream is, HSLinkedList<ExcelType2> values, String fileName, ArrayList<String> errorFileName) {
 		ExcelType2 excel2 = null;
 		String[] cellInfo = new String[5];
 		try (InputStream inp = is) {
@@ -83,7 +83,7 @@ public class ExcelReader {
 				    }
 			    }
 			    excel2 = new ExcelType2(fileName, cellInfo);
-			    values.addANodeToTail(excel2);
+			    values.insertNode(excel2);
 		    }
 		} catch (FileNotFoundException e) {
 			errorFileName.add(fileName);

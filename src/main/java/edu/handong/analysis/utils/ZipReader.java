@@ -11,11 +11,11 @@ import org.apache.commons.compress.archivers.zip.ZipFile;
 
 import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
-import edu.handong.analysis.datamodel.LinkedList;
+import edu.handong.analysis.datamodel.HSLinkedList;
 
 public class ZipReader {
 	
-	public static void readFileInZip(File file, LinkedList<ExcelType1> values1, LinkedList<ExcelType2> values2, ArrayList<String> errorFileName) {
+	public static void readFileInZip(File file, HSLinkedList<ExcelType1> values1, HSLinkedList<ExcelType2> values2, ArrayList<String> errorFileName) {
 		try {
 			ZipFile zipFile = new ZipFile(file);
 
