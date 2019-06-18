@@ -14,7 +14,6 @@ import edu.handong.analysis.datamodel.ExcelType1;
 import edu.handong.analysis.datamodel.ExcelType2;
 import edu.handong.analysis.datamodel.LinkedList;
 import edu.handong.analysis.utils.ExcelWriter;
-import edu.handong.analysis.utils.ZipReader;
 
 public class HGUClassInfoBinder {
 	
@@ -41,8 +40,15 @@ public class HGUClassInfoBinder {
 			
 			File[] fileList = dataDir.listFiles();
 			Arrays.sort(fileList);
+			Thread thread = null;
 			for(File file : fileList) {
-				ZipReader.readFileInZip(file, value1, value2);
+				thread = new Thread(new MultiThread(file, value1, value2));
+				thread.start();
+			}
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				e.getMessage();
 			}
 			ExcelWriter.WriteAFile1(value1, output);
 			ExcelWriter.WriteAFile2(value2, output);
